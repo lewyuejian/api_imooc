@@ -1,4 +1,5 @@
 {
-"login":{"username":"test","password":"123"},
-"loginout":{"username":"account","password":"123456"}
+"login":{"userName":"account","password":"123"},
+  "login1":{"userName":"test","password":"123"},
+"loginout":{"userName":"account","password":"123456"}
 }

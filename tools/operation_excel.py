@@ -11,6 +11,7 @@
 @desc:
 '''
 import xlrd
+from xlutils.copy import copy
 class OperationExcel:
     def __init__(self,file_name=None,sheet_id=None):
         # 如果file_name存在
@@ -49,6 +50,19 @@ class OperationExcel:
         """
         return self.data.cell_value(row,col)
 
+    def write_value(self,row,col,value):
+        """
+        将数据写入excel
+        :param row:
+        :param col:
+        :param value:
+        :return:
+        """
+        read_data = xlrd.open_workbook(self.file_name)
+        write_data = copy(read_data)
+        sheet_data = write_data.get_sheet(0)
+        sheet_data.write(row,col,value)
+        write_data.save(self.file_name)
 
 
 

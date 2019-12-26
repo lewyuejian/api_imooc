@@ -13,19 +13,20 @@
 class GlobalVar:
     #case_id
     Id = '0'
-    url = '1'
+    request_name = '1'
+    url = '2'
     # 是否执行
-    run = '2'
+    run = '3'
     # 请求方式
-    request_way = '3'
-    header = '4'
-    case_depend = '5'
-    data_depend = '6'
-    field_depend = '7'
-    data = '8'
+    request_way = '4'
+    header = '5'
+    case_depend = '6'
+    data_depend = '7'
+    field_depend = '8'
+    data = '9'
     # 预期结果
-    expect = '9'
-    result = '10'
+    expect = '10'
+    result = '11'
 
 
 def get_id():
