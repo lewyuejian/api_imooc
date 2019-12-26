@@ -15,6 +15,7 @@ sys.path.append("F:/python/imooc")
 from data.run_method import RunMethod
 from data.get_data import GetData
 from data.common_util import CommonUtil
+from data.dependent_data import DependentData
 class RunTest:
     def __init__(self):
         self.run_method = RunMethod()
@@ -30,15 +31,24 @@ class RunTest:
             data = self.data.get_data_for_json(i)
             header = self.data.is_header(i)
             expect = self.data.get_expcet_data(i)
-            if is_run:
-                res = self.run_method.run_main(method,url,data,header)
-                if self.com_util.is_contain(expect,res):
-                    self.data.write_result(i,'pass')
-                    print("测试通过")
-                else:
-                    self.data.write_result(i, 'fail')
-                    print("测试失败")
-               # return res
+            depend_case = self.data.is_depend(i)
+            if depend_case != None:
+                self.depend_data = DependentData(i)
+                # 获取依赖的响应数据
+                depend_response_data = self.depend_data.get_data_for_key(i)
+                # 获取依赖的key
+                depend_key = self.data.get_depend_field(i)
+                request_data[depend_key] = depend_response_data
+
+            # if is_run:
+            res = self.run_method.run_main(method,url,data,header)
+            if self.com_util.is_contain(expect,res):
+                self.data.write_result(i,'pass')
+               # print("测试通过")
+            else:
+                self.data.write_result(i, 'fail')
+                #print("测试失败")
+           # return res
 
 
 if __name__ == '__main__':
