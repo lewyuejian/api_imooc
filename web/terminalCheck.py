@@ -14,4 +14,8 @@ from django.shortcuts import render
 from django.http.response import HttpResponse
 
 def terminalcheck(request):
-    return render(request,'home.html',locals())
+    if request.method == 'POST':
+
+        return render(request,'home.html',locals())
+    else:
+        return render(request,'abnormal/404.html')
